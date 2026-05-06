@@ -218,6 +218,7 @@ const FC = {
     VTXTABLE_POWERLEVEL: null,
     VTX_CONFIG: null,
     VTX_DEVICE_STATUS: null,
+    PSAS_CONFIG: null,
 
     resetState() {
         // Using `Object.assign` instead of reassigning to
@@ -796,6 +797,32 @@ const FC = {
             slider_pids_valid: 1,
             slider_gyro_valid: 1,
             slider_dterm_valid: 1,
+        };
+
+        this.PSAS_CONFIG = {
+            stick_gain: [100, 100, 100],
+            damping_gain: [50, 200, 200],
+            pitch_damping_filter_freq: 30,
+            accel_z_filter_freq: 30,
+            pitch_stability_gain: 0,
+            pitch_accel_p_gain: 0,
+            pitch_accel_i_gain: 0,
+            pitch_accel_max: 40,
+            pitch_accel_min: 40,
+            yaw_damping_filter_freq: 5,
+            accel_y_filter_freq: 10,
+            yaw_stability_gain: 25,
+            wing_load: 0,
+            air_density: 1225,
+            lift_c_limit: 10,
+            aoa_limiter_gain: 0,
+            lift_coef_filter_freq: 50,
+            aoa_limiter_forecast_time: 10,
+            aoa_limiter_tau_return: 10,
+            servo_time: 90,
+            roll_yaw_clift_start: 8,
+            roll_yaw_clift_stop: 10,
+            roll_to_yaw_link: 0,
         };
     },
 
