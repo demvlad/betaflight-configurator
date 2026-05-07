@@ -22,6 +22,7 @@ import ReceiverTab from "../components/tabs/ReceiverTab.vue";
 import OsdTab from "../components/tabs/OsdTab.vue";
 import SetupTab from "../components/tabs/SetupTab.vue";
 import PidTuningTab from "../components/tabs/PidTuningTab.vue";
+import PsasTuningTab from "../components/tabs/PsasTuningTab.vue";
 import PreflightTab from "../components/tabs/PreflightTab.vue";
 import VtxTab from "../components/tabs/VtxTab.vue";
 import PresetsTab from "../components/tabs/PresetsTab.vue";
@@ -52,6 +53,7 @@ export const VueTabComponents = {
     osd: OsdTab,
     setup: SetupTab,
     pid_tuning: PidTuningTab,
+    psas_tuning: PsasTuningTab,
     preflight: PreflightTab,
     vtx: VtxTab,
     presets: PresetsTab,

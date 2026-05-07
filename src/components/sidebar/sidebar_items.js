@@ -13,6 +13,13 @@ export const sidebarItems = [
     { key: "failsafe", mode: "connected", i18n: "tabFailsafe", icon: "i-lucide-shield-alert", expert: true },
     { key: "presets", mode: "connected", i18n: "tabPresets", icon: "i-lucide-wand-2" },
     { key: "pid_tuning", mode: "connected", i18n: "tabPidTuning", icon: "i-lucide-gauge" },
+    {
+        key: "psas_tuning",
+        mode: "connected",
+        i18n: "tabPsasTuning",
+        icon: "i-lucide-gauge",
+        buildOptions: ["USE_AIRPLANE_SAS"],
+    },
     { key: "receiver", mode: "connected", i18n: "tabReceiver", icon: "i-lucide-radio" },
     { key: "auxiliary", mode: "connected", i18n: "tabAuxiliary", icon: "i-lucide-toggle-right" },
     { key: "adjustments", mode: "connected", i18n: "tabAdjustments", icon: "i-lucide-sliders", expert: true },

@@ -53,6 +53,7 @@ export const BetaflightComponents = {
         app.component("OsdTab", VueTabComponents.osd);
         app.component("SetupTab", VueTabComponents.setup);
         app.component("PidTuningTab", VueTabComponents.pid_tuning);
+        app.component("PsasTuningTab", VueTabComponents.psas_tuning);
         app.component("PreflightTab", VueTabComponents.preflight);
         app.component("VtxTab", VueTabComponents.vtx);
         app.component("PresetsTab", VueTabComponents.presets);

@@ -530,6 +530,9 @@
     "autotuneRiseTime": { "message": "Rise Time" },
     "autotuneSettlingTime": { "message": "Settling Time" },
     "autotuneSpectrogramTitle": { "message": "Spectrogram (Gyro)" },
+    "tabPsasTuning": {
+        "message": "Airplane SAS Tuning"
+    },
     "tabReceiver": {
         "message": "Receiver"
     },
@@ -9351,5 +9354,29 @@
     },
     "preflightForecastWeather": {
         "message": "Weather"
+    },
+    "psasMainSettings": {
+        "message": "PSAS main settings"
+    },
+    "psasTuningPilot": {
+        "message": "<b>P</b>ilot"
+    },
+    "psasTuningPilotHelp": {
+        "message": "Pilot control, [% servo per full stick]",
+        "description": "Servo deflection from pilot stick"
+    },
+    "psasTuningDamping": {
+        "message": "<b>D</b>amping"
+    },
+    "psasTuningDampingHelp": {
+        "message": "Damping control, [% servo per 1 deg/s rate]",
+        "description": "Servo deflection to damping plane rotation"
+    },
+    "psasTuningStability": {
+        "message": "<b>S</b>tability"
+    },
+    "psasTuningStabilityHelp": {
+        "message": "Stability control, [% servo per 1g load]",
+        "description": "Servo deflection to stable plane"
     }
 }
