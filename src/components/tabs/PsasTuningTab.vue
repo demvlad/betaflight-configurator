@@ -478,8 +478,6 @@ const { t } = useTranslation();
 
 const currentProfile = ref(FC.CONFIG.profile);
 
-const originalConfigs = ref("");
-
 // Items arrays for USelect / UTabs
 const profileItems = computed(() => {
     const items = [];
