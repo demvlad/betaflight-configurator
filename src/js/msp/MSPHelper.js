@@ -1793,10 +1793,6 @@ MspHelper.prototype.process_data = function (dataHandler) {
                 case MSPCodes.MSP_MULTIPLE_MSP:
                     let hasReturnedSomeCommand = false; // To avoid infinite loops
 
-                case MSPCodes.MSP_PSAS_CONFIG:
-                    MspHelper.readPsasSettings(data);
-                    break;
-
                     while (data.offset < data.byteLength) {
                         hasReturnedSomeCommand = true;
 
@@ -1832,6 +1828,10 @@ MspHelper.prototype.process_data = function (dataHandler) {
                         self.mspMultipleCache = [];
                     }
 
+                    break;
+
+                case MSPCodes.MSP_PSAS_CONFIG:
+                    MspHelper.readPsasSettings(data);
                     break;
 
                 default:
