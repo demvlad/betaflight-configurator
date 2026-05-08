@@ -135,7 +135,7 @@ const FIRMWARE_BUILD_OPTIONS = {
     USE_FLIGHT_PLAN: 16427,
     USE_OPTICALFLOW: 16428,
     USE_RANGEFINDER: 16429,
-    USE_AIRPLANE_SAS: 16450, // TODO: Set actual code from BF firmware
+    USE_AIRPLANE_SAS: 16424, // TODO: Using of USE_WING code till. Set actual code from BF firmware!
 };
 
 const FC = {
