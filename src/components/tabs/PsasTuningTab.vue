@@ -45,8 +45,8 @@
                     <UInputNumber
                         v-model="psasRollPilot"
                         :step="1"
-                        :min="0"
-                        :max="255"
+                        :min="5"
+                        :max="200"
                         size="xs"
                         orientation="vertical"
                         class="w-full"
@@ -54,10 +54,10 @@
 
                     <div style="display: flex">
                         <UInputNumber
-                            v-model="psasRollDampingCLI"
+                            v-model="psasRollDampingCli"
                             :step="1"
                             :min="0"
-                            :max="1000"
+                            :max="255"
                             size="xs"
                             orientation="vertical"
                             class="w-full"
@@ -78,7 +78,7 @@
                     <UInputNumber
                         v-model="psasPitchPilot"
                         :step="1"
-                        :min="0"
+                        :min="5"
                         :max="255"
                         size="xs"
                         orientation="vertical"
@@ -87,7 +87,7 @@
 
                     <div style="display: flex">
                         <UInputNumber
-                            v-model="psasPitchDampingCLI"
+                            v-model="psasPitchDampingCli"
                             :step="1"
                             :min="0"
                             :max="1000"
@@ -106,7 +106,7 @@
 
                     <div style="display: flex">
                         <UInputNumber
-                            v-model="psasPitchStabilityCLI"
+                            v-model="psasPitchStabilityCli"
                             :step="1"
                             :min="0"
                             :max="300"
@@ -129,7 +129,7 @@
                         v-model="psasYawPilot"
                         :step="1"
                         :min="0"
-                        :max="255"
+                        :max="200"
                         size="xs"
                         orientation="vertical"
                         class="w-full"
@@ -137,7 +137,7 @@
 
                     <div style="display: flex">
                         <UInputNumber
-                            v-model="psasYawDampingCLI"
+                            v-model="psasYawDampingCli"
                             :step="1"
                             :min="0"
                             :max="1000"
@@ -156,7 +156,7 @@
 
                     <div style="display: flex">
                         <UInputNumber
-                            v-model="psasYawStabilityCLI"
+                            v-model="psasYawStabilityCli"
                             :step="1"
                             :min="0"
                             :max="300"
@@ -166,6 +166,276 @@
                         />
                         <UInputNumber
                             v-model="psasYawStability"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+                </div>
+            </UiBox>
+
+            <UiBox title="Accel Z controller" type="neutral">
+                <div class="grid grid-cols-[3rem_repeat(1,minmax(4rem,auto))] gap-x-3 gap-y-1 items-center min-w-0">
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">I</div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasAccelICli"
+                            :step="1"
+                            :min="0"
+                            :max="255"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasAccelI"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">P</div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasAccelPCli"
+                            :step="1"
+                            :min="0"
+                            :max="1000"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasAccelP"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        G load max
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasGLoadMaxCli"
+                            :step="1"
+                            :min="20"
+                            :max="255"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasGLoadMax"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        G load min
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasGLoadMinCli"
+                            :step="1"
+                            :min="10"
+                            :max="255"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasGLoadMin"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        Servo time
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasServoTimeCli"
+                            :step="1"
+                            :min="5"
+                            :max="1000"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasServoTime"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+                </div>
+            </UiBox>
+
+            <UiBox title="AoA limiter" type="neutral">
+                <div class="grid grid-cols-[3rem_repeat(1,minmax(4rem,auto))] gap-x-3 gap-y-1 items-center min-w-0">
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        Wing loading
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasWingLoadingCli"
+                            :step="1"
+                            :min="0"
+                            :max="1500"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasWingLoading"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        Limiter I
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasLimiterGainCli"
+                            :step="1"
+                            :min="0"
+                            :max="255"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasLimiterGain"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        Limiter forecast
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasLimiterForecastCli"
+                            :step="1"
+                            :min="0"
+                            :max="255"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasLimiterForecast"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        Return time
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasLimiterTauReturnCli"
+                            :step="1"
+                            :min="1"
+                            :max="50"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasLimiterTauReturn"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+                </div>
+            </UiBox>
+
+            <UiBox title="Roll to yaw cross link" type="neutral">
+                <div class="grid grid-cols-[3rem_repeat(1,minmax(4rem,auto))] gap-x-3 gap-y-1 items-center min-w-0">
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">Gain</div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasRollToYawLinkCli"
+                            :step="1"
+                            :min="0"
+                            :max="255"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasRollToYawLink"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        Lift coef start
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasRollToYawLiftCoefStartCli"
+                            :step="1"
+                            :min="0"
+                            :max="20"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasRollToYawLiftCoefStart"
+                            :disabled="true"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                    </div>
+
+                    <div class="font-bold text-white text-center py-0.5 px-1 bg-[#e24761] rounded text-xs">
+                        Lift coef stop
+                    </div>
+                    <div style="display: flex">
+                        <UInputNumber
+                            v-model="psasRollToYawLiftCoefStopCli"
+                            :step="1"
+                            :min="0"
+                            :max="20"
+                            size="xs"
+                            orientation="vertical"
+                            class="w-full"
+                        />
+                        <UInputNumber
+                            v-model="psasRollToYawLiftCoefStop"
                             :disabled="true"
                             size="xs"
                             orientation="vertical"
@@ -303,6 +573,7 @@ onMounted(() => {
 // replace the sub-array reference with that number. Instead, read/write each
 // element directly.
 
+// Main settings
 // Roll
 const psasRollPilot = computed({
     get: () => FC.PSAS_CONFIG.stick_gain[0],
@@ -311,7 +582,7 @@ const psasRollPilot = computed({
     },
 });
 
-const psasRollDampingCLI = computed({
+const psasRollDampingCli = computed({
     get: () => FC.PSAS_CONFIG.damping_gain[0],
     set: (val) => {
         FC.PSAS_CONFIG.damping_gain[0] = val;
@@ -330,7 +601,7 @@ const psasPitchPilot = computed({
     },
 });
 
-const psasPitchDampingCLI = computed({
+const psasPitchDampingCli = computed({
     get: () => FC.PSAS_CONFIG.damping_gain[1],
     set: (val) => {
         FC.PSAS_CONFIG.damping_gain[1] = val;
@@ -341,7 +612,7 @@ const psasPitchDamping = computed({
     get: () => FC.PSAS_CONFIG.damping_gain[1] * 0.001,
 });
 
-const psasPitchStabilityCLI = computed({
+const psasPitchStabilityCli = computed({
     get: () => FC.PSAS_CONFIG.pitch_stability_gain,
     set: (val) => {
         FC.PSAS_CONFIG.pitch_stability_gain = val;
@@ -360,7 +631,7 @@ const psasYawPilot = computed({
     },
 });
 
-const psasYawDampingCLI = computed({
+const psasYawDampingCli = computed({
     get: () => FC.PSAS_CONFIG.damping_gain[2],
     set: (val) => {
         FC.PSAS_CONFIG.damping_gain[2] = val;
@@ -371,7 +642,7 @@ const psasYawDamping = computed({
     get: () => FC.PSAS_CONFIG.damping_gain[2] * 0.001,
 });
 
-const psasYawStabilityCLI = computed({
+const psasYawStabilityCli = computed({
     get: () => FC.PSAS_CONFIG.yaw_stability_gain,
     set: (val) => {
         FC.PSAS_CONFIG.yaw_stability_gain = val;
@@ -380,5 +651,139 @@ const psasYawStabilityCLI = computed({
 
 const psasYawStability = computed({
     get: () => FC.PSAS_CONFIG.yaw_stability_gain * 0.1,
+});
+
+// Accel Z controller
+const psasAccelICli = computed({
+    get: () => FC.PSAS_CONFIG.pitch_accel_i_gain,
+    set: (val) => {
+        FC.PSAS_CONFIG.pitch_accel_i_gain = val;
+    },
+});
+
+const psasAccelI = computed({
+    get: () => FC.PSAS_CONFIG.pitch_accel_i_gain,
+});
+
+const psasAccelPCli = computed({
+    get: () => FC.PSAS_CONFIG.pitch_accel_p_gain,
+    set: (val) => {
+        FC.PSAS_CONFIG.pitch_accel_p_gain = val;
+    },
+});
+
+const psasAccelP = computed({
+    get: () => FC.PSAS_CONFIG.pitch_accel_p_gain * 0.1,
+});
+
+const psasGLoadMaxCli = computed({
+    get: () => FC.PSAS_CONFIG.pitch_accel_max,
+    set: (val) => {
+        FC.PSAS_CONFIG.pitch_accel_max = val;
+    },
+});
+
+const psasGLoadMax = computed({
+    get: () => FC.PSAS_CONFIG.pitch_accel_max * 0.1,
+});
+
+const psasGLoadMinCli = computed({
+    get: () => FC.PSAS_CONFIG.pitch_accel_min,
+    set: (val) => {
+        FC.PSAS_CONFIG.pitch_accel_min = val;
+    },
+});
+
+const psasGLoadMin = computed({
+    get: () => -FC.PSAS_CONFIG.pitch_accel_min * 0.1,
+});
+
+const psasServoTimeCli = computed({
+    get: () => FC.PSAS_CONFIG.servo_time,
+    set: (val) => {
+        FC.PSAS_CONFIG.servo_time = val;
+    },
+});
+
+const psasServoTime = computed({
+    get: () => FC.PSAS_CONFIG.servo_time * 0.001,
+});
+
+// AoA limiter
+const psasWingLoadingCli = computed({
+    get: () => FC.PSAS_CONFIG.wing_load,
+    set: (val) => {
+        FC.PSAS_CONFIG.wing_load = val;
+    },
+});
+
+const psasWingLoading = computed({
+    get: () => FC.PSAS_CONFIG.wing_load * 0.1,
+});
+
+const psasLimiterGainCli = computed({
+    get: () => FC.PSAS_CONFIG.aoa_limiter_gain,
+    set: (val) => {
+        FC.PSAS_CONFIG.aoa_limiter_gain = val;
+    },
+});
+
+const psasLimiterGain = computed({
+    get: () => FC.PSAS_CONFIG.aoa_limiter_gain,
+});
+
+const psasLimiterForecastCli = computed({
+    get: () => FC.PSAS_CONFIG.aoa_limiter_forecast_time,
+    set: (val) => {
+        FC.PSAS_CONFIG.aoa_limiter_forecast_time = val;
+    },
+});
+
+const psasLimiterForecast = computed({
+    get: () => FC.PSAS_CONFIG.aoa_limiter_forecast_time * 0.01,
+});
+
+const psasLimiterTauReturnCli = computed({
+    get: () => FC.PSAS_CONFIG.aoa_limiter_tau_return,
+    set: (val) => {
+        FC.PSAS_CONFIG.aoa_limiter_tau_return = val;
+    },
+});
+
+const psasLimiterTauReturn = computed({
+    get: () => FC.PSAS_CONFIG.aoa_limiter_tau_return * 0.1,
+});
+
+const psasRollToYawLinkCli = computed({
+    get: () => FC.PSAS_CONFIG.roll_to_yaw_link,
+    set: (val) => {
+        FC.PSAS_CONFIG.roll_to_yaw_link = val;
+    },
+});
+
+const psasRollToYawLink = computed({
+    get: () => FC.PSAS_CONFIG.roll_to_yaw_link * 0.1,
+});
+
+const psasRollToYawLiftCoefStartCli = computed({
+    get: () => FC.PSAS_CONFIG.roll_yaw_clift_start,
+    set: (val) => {
+        FC.PSAS_CONFIG.roll_yaw_clift_start = val;
+    },
+});
+
+const psasRollToYawLiftCoefStart = computed({
+    get: () => FC.PSAS_CONFIG.roll_yaw_clift_start * 0.1,
+});
+
+const psasRollToYawLiftCoefStopCli = computed({
+    get: () => FC.PSAS_CONFIG.roll_yaw_clift_stop,
+    set: (val) => {
+        FC.PSAS_CONFIG.roll_yaw_clift_stop = val;
+    },
+});
+
+const psasRollToYawLiftCoefStop = computed({
+    get: () => FC.PSAS_CONFIG.roll_yaw_clift_stop * 0.1,
 });
 </script>
