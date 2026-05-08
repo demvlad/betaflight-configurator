@@ -174,13 +174,24 @@
                     </div>
                 </div>
             </UiBox>
+
+            <!-- Save/Revert Buttons -->
+            <div class="content_toolbar toolbar_fixed_bottom flex items-center gap-2">
+                <UButton label="Default" @click="reset" />
+                <UButton
+                    :label="$t('pidTuningButtonRefresh')"
+                    :disabled="!hasChanges"
+                    @click="refresh"
+                    variant="soft"
+                />
+                <UButton :label="$t('pidTuningButtonSave')" :disabled="!hasChanges" @click="save" />
+            </div>
         </div>
     </BaseTab>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { usePidTuningStore } from "@/stores/pidTuning";
+import { ref, watch, computed, onMounted } from "vue";
 import BaseTab from "./BaseTab.vue";
 import WikiButton from "@/components/elements/WikiButton.vue";
 import UiBox from "@/components/elements/UiBox.vue";
@@ -194,9 +205,7 @@ import { i18n } from "@/js/localization";
 import { useTranslation } from "i18next-vue";
 
 const { t } = useTranslation();
-const pidTuningStore = usePidTuningStore();
 
-const isSupported = ref(false);
 const currentProfile = ref(FC.CONFIG.profile);
 
 const originalConfigs = ref("");
@@ -221,19 +230,73 @@ async function onProfileChange() {
     await loadData();
 }
 
-// hasChanges is owned by the Pinia store
-const hasChanges = computed(() => pidTuningStore.hasChanges);
+const hasChanges = ref(null);
+watch(
+    () => JSON.stringify(FC.PSAS_CONFIG),
+    () => (hasChanges.value = hasChanges.value === null ? false : true),
+);
 
+let defaultSettings = null;
 async function loadData() {
+    if (!defaultSettings) {
+        defaultSettings = JSON.parse(JSON.stringify(FC.PSAS_CONFIG));
+    }
     try {
         await MSP.promise(MSPCodes.MSP_PSAS_CONFIG);
         initializeUI();
+        hasChanges.value = false;
     } catch (e) {
         console.error("Failed to load PSAS configs", e);
-        isSupported.value = false;
         GUI.content_ready();
     }
 }
+
+function initializeUI() {
+    if (!FC.PSAS_CONFIG || FC.PSAS_CONFIG.length === 0) {
+        GUI.content_ready();
+        return;
+    }
+
+    GUI.content_ready();
+}
+
+// Save/Refresh
+async function save() {
+    if (!hasChanges.value) {
+        return;
+    }
+
+    try {
+        // Save PIDs
+        await MSP.promise(MSPCodes.MSP_SET_PSAS_CONFIG, mspHelper.crunch(MSPCodes.MSP_SET_PSAS_CONFIG));
+
+        // Write to EEPROM
+        await MSP.promise(MSPCodes.MSP_EEPROM_WRITE);
+
+        hasChanges.value = false;
+    } catch (e) {
+        console.error("[PidTuning] Save failed:", e);
+    }
+}
+
+async function refresh() {
+    try {
+        if (await loadData()) {
+            gui_log(t("pidTuningDataRefreshed"));
+            hasChanges.value = false;
+        }
+    } catch (error) {
+        console.error("[PidTuningTab] Failed to refresh data:", error);
+    }
+}
+
+async function reset() {
+    FC.PSAS_CONFIG = JSON.parse(JSON.stringify(defaultSettings));
+}
+
+onMounted(() => {
+    loadData();
+});
 
 // PSAS - Individual per-cell computed properties to avoid array destruction.
 // v-model.number writes a single number, so using array-level computeds would
@@ -317,21 +380,5 @@ const psasYawStabilityCLI = computed({
 
 const psasYawStability = computed({
     get: () => FC.PSAS_CONFIG.yaw_stability_gain * 0.1,
-});
-
-function initializeUI() {
-    if (!FC.PSAS_CONFIG || FC.PSAS_CONFIG.length === 0) {
-        isSupported.value = false;
-        GUI.content_ready();
-        return;
-    }
-
-    isSupported.value = true;
-
-    GUI.content_ready();
-}
-
-onMounted(() => {
-    loadData();
 });
 </script>
