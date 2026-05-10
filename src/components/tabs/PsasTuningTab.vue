@@ -481,7 +481,7 @@ const currentProfile = ref(FC.CONFIG.profile);
 // Items arrays for USelect / UTabs
 const profileItems = computed(() => {
     const items = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
         items.push({ label: i18n.getMessage("pidTuningProfileOption", [i + 1]), value: i });
     }
     return items;
