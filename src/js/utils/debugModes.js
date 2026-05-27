@@ -143,6 +143,9 @@ export function getDebugModes(apiVersion) {
 
     if (semver.gte(apiVersion, API_VERSION_1_48)) {
         addArrayElement(result, "AUTOPILOT_PID");
+        addArrayElement(result, "POSITION_NAV");
+        addArrayElement(result, "AUTOPILOT_STOP");
+        addArrayElement(result, "PLANE_SAS");
     }
 
     return result;
