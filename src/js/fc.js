@@ -802,7 +802,7 @@ const FC = {
 
         this.PSAS_CONFIG = {
             stick_gain: [100, 100, 100],
-            damping_gain: [50, 200, 200],
+            damping_gain: [20, 50, 50],
             pitch_damping_filter_freq: 30,
             accel_z_filter_freq: 30,
             pitch_stability_gain: 0,
