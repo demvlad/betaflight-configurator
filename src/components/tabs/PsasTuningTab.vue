@@ -501,13 +501,13 @@ async function onProfileChange() {
 const hasChanges = ref(null);
 watch(
     () => JSON.stringify(FC.PSAS_CONFIG),
-    () => (hasChanges.value = hasChanges.value === null ? false : true),
+    () => (hasChanges.value = hasChanges.value !== null),
 );
 
 let defaultSettings = null;
 async function loadData() {
     if (!defaultSettings) {
-        defaultSettings = JSON.parse(JSON.stringify(FC.PSAS_CONFIG));
+        defaultSettings = structuredClone(FC.PSAS_CONFIG);
     }
     try {
         await MSP.promise(MSPCodes.MSP_PSAS_CONFIG);
@@ -559,7 +559,7 @@ async function refresh() {
 }
 
 async function reset() {
-    FC.PSAS_CONFIG = JSON.parse(JSON.stringify(defaultSettings));
+    FC.PSAS_CONFIG = structuredClone(defaultSettings);
 }
 
 onMounted(() => {
