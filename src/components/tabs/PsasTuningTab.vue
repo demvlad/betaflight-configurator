@@ -513,14 +513,16 @@ async function loadData() {
         await MSP.promise(MSPCodes.MSP_PSAS_CONFIG);
         initializeUI();
         hasChanges.value = false;
+        return true;
     } catch (e) {
         console.error("Failed to load PSAS configs", e);
         GUI.content_ready();
+        return false;
     }
 }
 
 function initializeUI() {
-    if (!FC.PSAS_CONFIG || FC.PSAS_CONFIG.length === 0) {
+    if (!FC.PSAS_CONFIG) {
         GUI.content_ready();
         return;
     }
