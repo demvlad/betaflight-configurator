@@ -473,6 +473,8 @@ import MSPCodes from "@/js/msp/MSPCodes";
 import FC from "@/js/fc";
 import { i18n } from "@/js/localization";
 import { useTranslation } from "i18next-vue";
+import { gui_log } from "@/js/gui_log";
+import { mspHelper } from "@/js/msp/MSPHelper";
 
 const { t } = useTranslation();
 
