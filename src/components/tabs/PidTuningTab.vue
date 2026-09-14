@@ -141,7 +141,7 @@ import { i18n } from "@/js/localization";
 import { validateTuningSliders } from "@/composables/useTuningSliders";
 import { mspHelper } from "@/js/msp/MSPHelper";
 import semver from "semver";
-import { API_VERSION_1_45, API_VERSION_1_47 } from "@/js/data_storage";
+import { API_VERSION_1_45, API_VERSION_1_47, API_VERSION_1_49 } from "@/js/data_storage";
 import { isExpertModeEnabled } from "@/js/utils/isExpertModeEnabled";
 import { useNavigationStore } from "@/stores/navigation";
 import { useDialog } from "@/composables/useDialog";
@@ -281,6 +281,11 @@ async function loadData() {
                 await MSP.promise(MSPCodes.MSP_SIMPLIFIED_TUNING);
                 await MSP.promise(MSPCodes.MSP_ADVANCED_CONFIG);
                 await MSP.promise(MSPCodes.MSP_MIXER_CONFIG);
+
+                // Wing config (API 1.49+, WING build)
+                if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_49) && FC.CONFIG.buildOptions.includes("USE_WING")) {
+                    await MSP.promise(MSPCodes.MSP_WING);
+                }
 
                 // Plane SAS
                 if (FC.CONFIG.buildOptions.includes("USE_PSAS")) {
@@ -528,10 +533,16 @@ function save() {
             }
         }
 
+        // Save Wing config (API 1.49+, WING build)
+        if (semver.gte(FC.CONFIG.apiVersion, API_VERSION_1_49) && FC.CONFIG.buildOptions.includes("USE_WING")) {
+            await MSP.promise(MSPCodes.MSP_SET_WING, mspHelper.crunch(MSPCodes.MSP_SET_WING));
+        }
+
         // Save Plane SAS config to firmware
         if (FC.CONFIG.buildOptions.includes("USE_PSAS")) {
             await MSP.promise(MSPCodes.MSP_SET_PSAS_CONFIG, mspHelper.crunch(MSPCodes.MSP_SET_PSAS_CONFIG));
         }
+
         // Persist to EEPROM (no reboot)
         await saveToEeprom();
 
