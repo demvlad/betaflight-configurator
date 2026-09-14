@@ -70,7 +70,7 @@ function generateCurve(power, minLimit, maxLimit) {
     const data = [];
     for (let i = 0; i <= steps; i++) {
         const v = 1 + (props.maxSpeed - 1) * (i / steps);
-        let ratio = props.vRef / v;
+        const ratio = props.vRef / v;
         let multiplier = Math.pow(ratio, power);
         multiplier = Math.min(Math.max(multiplier, minLimit || 0), maxLimit || 10);
         data.push({ speed: v, multiplier });
