@@ -55,7 +55,7 @@ describe("debugModes helper", () => {
             expect(modes.indexOf("OPTICALFLOW")).toBe(modes.indexOf("RANGEFINDER_QUALITY") + 1);
         });
 
-        it("appends AUTOPILOT_PID, POSITION_NAV, AUTOPILOT_STOP, PITOT, PSAS and drops AUTOPILOT_POSITION at API 1.48", () => {
+        it("appends AUTOPILOT_PID, POSITION_NAV, AUTOPILOT_STOP, PITOT, POSITION_EST, AUTOPILOT_HEADING, PSAS and drops AUTOPILOT_POSITION at API 1.48", () => {
             const modes = getDebugModes(API_VERSION_1_48);
             // AUTOPILOT_POSITION was removed from the firmware enum in 1.48.
             expect(modes).not.toContain("AUTOPILOT_POSITION");
@@ -66,7 +66,8 @@ describe("debugModes helper", () => {
             expect(getDebugModeIndex("AUTOPILOT_STOP", API_VERSION_1_48)).toBe(101);
             expect(getDebugModeIndex("PITOT", API_VERSION_1_48)).toBe(102);
             expect(getDebugModeIndex("POSITION_EST", API_VERSION_1_49)).toBe(103);
-            expect(getDebugModeIndex("PSAS", API_VERSION_1_49)).toBe(104);
+            expect(getDebugModeIndex("AUTOPILOT_HEADING", API_VERSION_1_49)).toBe(104);
+            expect(getDebugModeIndex("PSAS", API_VERSION_1_49)).toBe(105);
 
             // PSAS is the last entry.
             expect(modes.indexOf("PSAS")).toBe(modes.length - 1);
@@ -101,6 +102,7 @@ describe("debugModes helper", () => {
             expect(modes).not.toContain("AUTOPILOT_STOP");
             expect(modes).not.toContain("PITOT");
             expect(modes).not.toContain("POSITION_EST");
+            expect(modes).not.toContain("AUTOPILOT_HEADING");
             expect(modes).not.toContain("PSAS");
         });
 

@@ -583,7 +583,8 @@ export const FIRMWARE_DEBUG_MODES: Readonly<Record<string, readonly string[]>> =
         "AUTOPILOT_STOP", // 101
         "PITOT", // 102
         "POSITION_EST", // 103
-        "PSAS", // 104
+        "AUTOPILOT_HEADING", // 104
+        "PSAS", // 105
     ]),
 });
 
