@@ -2,7 +2,7 @@
     <div ref="containerRef" class="chart-container">
         <canvas ref="chartCanvas" :width="canvasWidth" :height="canvasHeight"></canvas>
         <div v-if="showLegend" class="flex flex-wrap justify-center gap-4 mt-1 text-xs">
-            <div v-for="curve in chartCurves">
+            <div v-for="(curve, index) in chartCurves" :key="index">
                 <span>
                     <span
                         class="inline-block w-3 h-0.5 align-middle mr-1"
