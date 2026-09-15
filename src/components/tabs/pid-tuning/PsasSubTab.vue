@@ -343,24 +343,7 @@
                     class="relative bg-white dark:bg-neutral-900 border border-default p-1"
                     style="height: 362px; min-width: 200px"
                 >
-                    <HyperbolicChart
-                        :vRef="psasSpeedCurvesVref"
-                        :mainPower="psasSpeedCurvesMainPower / 10"
-                        :mainMin="psasSpeedCurvesMainCurveMin / 100"
-                        :mainMax="psasSpeedCurvesMainCurveMax / 100"
-                        :stickPower="psasSpeedCurvesMainPower / 10"
-                        :stickMin="psasSpeedCurvesPilotCurveMin / 100"
-                        :stickMax="psasSpeedCurvesPilotCurveMax / 100"
-                        :rollStickPower="psasSpeedCurvesRollPilotPower / 10"
-                        :showMain="true"
-                        :mainActive="psasSpeedCurvesMainEnabled"
-                        :showStick="true"
-                        :stickActive="psasSpeedCurvesPilotEnabled"
-                        :showRollStick="true"
-                        :rollStickActive="psasSpeedCurvesPilotRollEnabled"
-                        :showLegend="true"
-                        :showGrid="true"
-                    />
+                    <WingCurvesChart :chartCurves="chartCurves" :showLegend="true" :showGrid="true" />
                 </div>
             </details>
         </UiBox>
@@ -632,7 +615,8 @@ import FC from "@/js/fc";
 
 import UiBox from "@/components/elements/UiBox.vue";
 import HelpIcon from "@/components/elements/HelpIcon.vue";
-import HyperbolicChart from "./HyperbolicChart.vue";
+import WingCurvesChart from "./WingCurvesChart.vue";
+import getPsasHyperbolicCurves from "./WingPsasCurvesData";
 
 const { t } = useTranslation();
 
@@ -952,6 +936,20 @@ const psasSpeedCurvesMode = computed({
     set: (val) => {
         FC.PSAS_CONFIG.speed_curve_mode = val;
     },
+});
+
+// PSAS config - reactive reference
+const psasConfig = computed(() => FC.PSAS_CONFIG);
+const chartCurves = computed(() => {
+    const curvesState = {
+        showMain: true,
+        mainActive: psasSpeedCurvesMainEnabled.value,
+        showStick: true,
+        stickActive: psasSpeedCurvesPilotEnabled.value,
+        showRollStick: true,
+        rollStickActive: psasSpeedCurvesPilotRollEnabled.value,
+    };
+    return getPsasHyperbolicCurves(psasConfig.value, curvesState);
 });
 
 // Watch for changes to mark tab dirty state in parent component

@@ -1,6 +1,18 @@
 <template>
     <div ref="containerRef" class="chart-container">
         <canvas ref="chartCanvas" :width="canvasWidth" :height="canvasHeight"></canvas>
+        <div v-if="showLegend" class="flex flex-wrap justify-center gap-4 mt-1 text-xs">
+            <div v-for="curve in chartCurves">
+                <span>
+                    <span
+                        class="inline-block w-3 h-0.5 align-middle mr-1"
+                        :style="{ backgroundColor: curve.color, opacity: curve.active ? 1 : 0.4 }"
+                    >
+                    </span>
+                    {{ curve.label }}
+                </span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -11,6 +23,7 @@ import { getCssVar } from "./WingTpaCurvesData";
 const props = defineProps({
     chartCurves: { type: Array, default: () => [] },
     showGrid: { type: Boolean, default: true },
+    showLegend: { type: Boolean, default: true },
 });
 
 const containerRef = ref(null);
